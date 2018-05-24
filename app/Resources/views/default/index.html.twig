@@ -2,24 +2,29 @@
 
 {% block body %}
     <div id="wrapper">
-        <h1>Routes disponibles :</h1>
-        <ul>
-            <li>
-                <a href="{{ path('planemodel_index') }}">Voir les avions</a>
-            </li>
-            <li>
-                <a href="{{ path('reservation_index') }}">Voir les reservations</a>
-            </li>
-            <li>
-                <a href="{{ path('flight_index') }}">Voir les vols</a>
-            </li>
-            <li>
-                <a href="{{ path('site_index') }}">Voir les terrains</a>
-            </li>
-            <li>
-                <a href="{{ path('review_index') }}">Voir tous les avis utilisateurs</a>
-            </li>
-        </ul>
+        <div id="container">
+            <h1>Routes disponibles :</h1>
+            <ul>
+                <li>
+                    <a href="{{ path('planemodel_index') }}">Voir les avions</a>
+                </li>
+                <li>
+                    <a href="{{ path('reservation_index') }}">Voir les reservations</a>
+                </li>
+                <li>
+                    <a href="{{ path('flight_index') }}">Voir les vols</a>
+                </li>
+                <li>
+                    <a href="{{ path('site_index') }}">Voir les terrains</a>
+                </li>
+                <li>
+                    <a href="{{ path('review_index') }}">Voir tous les avis utilisateurs</a>
+                </li>
+
+            </ul>
+
+        </div>
+        <p> C'est votre première visite ? <a href="/register">Cliquez ici</a> pour vous inscrire et pouvoir accéder à toutes les fonctionnalités du site !</p>
     </div>
 {% endblock %}
 

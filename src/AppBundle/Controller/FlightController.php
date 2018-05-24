@@ -67,6 +67,8 @@ class FlightController extends Controller
     public function showAction(Flight $flight, FlightInfo $flightInfo)
     {
         $deleteForm = $this->createDeleteForm($flight);
+
+
         $distance = $flightInfo->getDistance(
             $flight->getDeparture()->getLatitude(),
             $flight->getDeparture()->getLongitude(),
@@ -80,10 +82,10 @@ class FlightController extends Controller
         );
 
         return $this->render('flight/show.html.twig', array(
+            'time' => $time,
             'flight' => $flight,
             'delete_form' => $deleteForm->createView(),
-            'distance' => $distance,
-            'time' => $time,
+            'distance'=> $distance,
         ));
     }
 

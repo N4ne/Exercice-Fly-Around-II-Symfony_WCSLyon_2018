@@ -3,11 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Review;
-use AppBundle\Form\ReviewType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+
+
 
 /**
  * Review controller.
@@ -42,13 +43,14 @@ class ReviewController extends Controller
     public function newAction(Request $request)
     {
         $review = new Review();
-        $form = $this->createForm(ReviewType::class, $review);
+        $form = $this->createForm('AppBundle\Form\ReviewType', $review);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($review);
             $em->flush();
+
             return $this->redirectToRoute('review_show', array('id' => $review->getId()));
         }
 
@@ -61,23 +63,21 @@ class ReviewController extends Controller
     /**
      * Finds and displays a review entity.
      *
-     * @Route("/{id}", name="review_show", requirements={"id": "\d+"})
+     * @Route("/{id}", name="review_show")
      * @Method("GET")
-     * @param Review $review
-     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Review $review)
     {
         $deleteForm = $this->createDeleteForm($review);
 
-        return $this->render('review/show.html.twig', [
+        return $this->render('review/show.html.twig', array(
             'review' => $review,
             'delete_form' => $deleteForm->createView(),
-        ]);
+        ));
     }
 
     /**
-     * Displays a form to edit an existing kingdom entity.
+     * Displays a form to edit an existing review entity.
      *
      * @Route("/{id}/edit", name="review_edit")
      * @Method({"GET", "POST"})
@@ -104,7 +104,7 @@ class ReviewController extends Controller
     /**
      * Deletes a review entity.
      *
-     * @Route("/{id}", name="review_delete", requirements={"id": "\d+"})
+     * @Route("/{id}", name="review_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Review $review)
@@ -134,6 +134,6 @@ class ReviewController extends Controller
             ->setAction($this->generateUrl('review_delete', array('id' => $review->getId())))
             ->setMethod('DELETE')
             ->getForm()
-            ;
+        ;
     }
 }

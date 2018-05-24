@@ -236,4 +236,14 @@ class PlaneModel
     {
         return $this->plane;
     }
+
+    /**
+     * Get planes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlanes()
+    {
+        return $this->planes;
+    }
 }
