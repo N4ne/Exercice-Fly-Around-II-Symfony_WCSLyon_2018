@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
@@ -44,7 +43,7 @@ class User
     private $phoneNumber;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
      * @ORM\Column(name="birthDate", type="datetime")
      */
